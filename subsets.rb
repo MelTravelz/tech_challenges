@@ -34,33 +34,26 @@
 # there might be an enumerable that does this - I'll need to research (.each_cons)
 
 ################ First Attempt ################ 
-def subset_numbers(input_array)
-  output_array = []
+# def subset_numbers(input_array)
+#   output_array = []
 
-  while input_array != []
-    input_array.each_cons(2) do |a| 
-      output_array << a 
-    end
-    input_array.shift
-  end
+#   while input_array != []
+#     input_array.each_cons(2) do |a| 
+#       output_array << a 
+#     end
+#     input_array.shift
+#   end
 
-  output_array
-end
+#   output_array
+# end
 
-input_1 = [1, 2, 3, 4]
-p subset_numbers(input_1)
-# => [[1, 2], [2, 3], [3, 4], [2, 3], [3, 4], [3, 4]]
+# input_1 = [1, 2, 3, 4]
+# p subset_numbers(input_1)
+# # => [[1, 2], [2, 3], [3, 4], [2, 3], [3, 4], [3, 4]]
 
-input_2 = [54, 77]
-p subset_numbers(input_2)
-# => [[54, 77]]
+# maybe .each_with_index ??
 
-input_3 = []
-p subset_numbers(input_3)
-# => []
-
-
-################ Alternative Solutions ################ 
+################ Second Attempt ################ 
 def other_subset_numbers(input_array)
   input_array.combination(2).to_a
 end
@@ -69,3 +62,11 @@ input_4 = [1, 2, 3, 4]
 p other_subset_numbers(input_4)
 # => [[1, 2], [2, 3], [3, 4], [2, 3], [3, 4], [3, 4]]
 # More on .combination method: https://ruby-doc.org/core-2.4.1/Array.html#method-i-combination
+
+input_2 = [54, 77]
+p other_subset_numbers(input_2)
+# => [[54, 77]]
+
+input_3 = []
+p other_subset_numbers(input_3)
+# => []
