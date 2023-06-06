@@ -1,0 +1,68 @@
+################ Class Work 1 ################
+# def countdown(num)
+#   # check our base case, if statement
+#   if num < 0
+#     return(num)
+#   end
+#   p num 
+#   # recursive case moving towards base case
+#   countdown(num - 1) 
+# end
+
+# p countdown(5)
+# => 5 4 3 2 1 0 nil
+# how to remove nil? 
+# added return(num) => 5 4 3 2 1 0 -1
+
+################# how to remove -1? 
+def countdown(num)
+  if num == 0
+    return 0
+  end
+  p num 
+  countdown(num - 1) 
+end
+ 
+p countdown(5)
+# => 5 4 3 2 1 0
+
+################ Class Work 2 ################
+# numbers = [1, 2, 3, 4]
+# get_sum(numbers)
+
+# Pseudocode:
+# when array is empty, return sum
+# remove one element add to zero
+# remove next element add to previous sum
+# continue until array is empty
+
+def get_sum(array_nums)
+  if array_nums == [] # array_nums.empty?
+    return 0
+  else
+    return array_nums[0] + get_sum(array_nums[1..-1])
+  end
+end
+
+numbers = [1, 2, 3, 4]
+p get_sum(numbers)
+# => 10
+
+################ Class Work 3 ################
+
+
+
+
+################ Example: https://www.geeksforgeeks.org/recursion-in-ruby/ ################
+################ Ruby program for calculating the Nth Fibonacci number.
+# def Fibonacci(number)
+#   # Base case :  when N is less than 2.
+#   if number < 2
+#     number
+#   else
+#     # Recursive call : sum of last two Fibonacci's.
+#     Fibonacci(number - 1) + Fibonacci(number - 2)
+#   end
+# end
+  
+# p Fibonacci(12)
