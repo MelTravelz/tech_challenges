@@ -18,11 +18,11 @@
 # 4. Can I add a ? to the method name? (these types of methods will return true or false)
 
 ################ Match ################ 
-# This does remind me of palendromes a little bit, to compare two strings
+# This does remind me of palindromes a little bit, to compare two strings
 # there is a method that removes all white space -> .delete(' ')
 # we can use .even? to check if the string is even
 # need to find a method that will split an even string in the middle?? <- will need to research
-# also need to find a way to match the opposite bracket [ = ]
+# also need to find a way to match the opposite bracket [ = ] -> .gsub!!
 
 ################ Pseudocode ################ 
 # First need remove all white space 
@@ -37,21 +37,25 @@ def bracket(string)
   length_count = compact_string.size
 
   if length_count.even?
-    require 'pry'; binding.pry
     string_array = [compact_string[0, length_count/2], compact_string[length_count/2..-1]]
-    string_array[0] == string_array[1] # This would work if we were working with palendromes
+    reversed = string_array[1].gsub(/[])}]/, ']'=>'[', ')'=>'()', '}'=>'{')
+    string_array[0] == reversed 
+    return true
   else 
-    return "false"
+    return false
   end
 end
 
-
-
-
 p bracket('( {  []})') #happy path
+#=> true
 
 p bracket('({})') #happy path
+#=> true
 
 p bracket('( []})') #sad path
+#=> false
 
 p bracket('(a[]})') #sad path
+#=> true 
+# Need to find a method to check/allow for only certain characters
+# OR only expect brackets to ever be entered into method
