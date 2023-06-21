@@ -18,11 +18,38 @@
 # More simply put, remove the deeply nested brackets to return a single array.
 
 ################ Clarification Questions ################ 
+# 1. So the content/elements are not significant and we want to return an array of those elements.
 
 ################ Match ################ 
+# This exercise reminds me to the enumerables Ruby exercieses from Turing
 
 ################ Pseudocode ################ 
+# I'm thinking .delete([]) might work
+# maybe we need to make everything inside the outter array an element and then delete
+# ok looks like a nested array might be necessary
+# and we might possibly use recursion to loop through n number of times?
 
 ################ First Attempt ################ 
+
+def flatten_array(array)
+  results = []
+
+  array.each do |element|
+    if element.class == Array
+      element.each do |number|
+        results.push(number)
+      end
+    else
+      results.push(element)
+    end
+  end
+
+  results
+end
+
+nums = [1, 2, 3, [[4], 5], [[[6]]]]
+# words = ["hi", "this is", [[["string"], "that is very"], [[[["nested"]]]]]]
+
+p flatten_array(nums)
 
 ################ Alternative Solutions ################ 
