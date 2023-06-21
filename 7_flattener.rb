@@ -21,6 +21,7 @@
 ################ Clarification Questions ################ 
 # 1. So the content/elements are not significant and we want to return an array of those elements.
 # 2. Might I use the internet to research recursion and how I might implement it here? 
+# 3. Do I need to account for nil values or if only nil is passed through? 
 
 
 ################ Match ################ 
@@ -106,3 +107,23 @@ words = ["hi", "this is", [[["string"], "that is very"], [[[["nested"]]]]]]
 
 p flatten_array(nums)
 p flatten_array(words)
+
+
+################ Additional Resrouces ################ 
+# https://medium.com/@anneeb/recreating-the-flatten-method-for-arrays-in-ruby-fae8040bdbde
+
+# This article takes into account if nil is passed through! <- good question to consider/sad path test!
+
+# Also learned about the Ruby "ternary operator" 
+  # it includes three parts: a conditional statement and two possible outcomes
+  # https://www.rubyguides.com/2019/10/ruby-ternary-operator/#:~:text=What%20is%20a%20ternary%20operator,just%20one%20line%20of%20code.
+  
+  # this is how to write an if statment in one line of code! example: 
+      # if apple_stock > 1
+      #   :eat_apple
+      # else
+      #   :buy_apple
+      # end
+  # turns into: 
+      # apple_stock > 1 ? :eat_apple : :buy_apple
+      # condition ? true : false
