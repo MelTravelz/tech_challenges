@@ -106,3 +106,22 @@ words = ["hi", "this is", [[["string"], "that is very"], [[[["nested"]]]]]]
 
 p flatten_array(nums)
 p flatten_array(words)
+
+################ Additional Resources ################ 
+# https://medium.com/@anneeb/recreating-the-flatten-method-for-arrays-in-ruby-fae8040bdbde
+
+# This article takes into account if nil is passed through! <- good question to consider/sad path test!
+
+# Also learned about the Ruby "ternary operator" 
+  # it includes three parts: a conditional statement and two possible outcomes
+  # https://www.rubyguides.com/2019/10/ruby-ternary-operator/#:~:text=What%20is%20a%20ternary%20operator,just%20one%20line%20of%20code.
+  
+  # this is how to write an if statment in one line of code! example: 
+      # if apple_stock > 1
+      #   :eat_apple
+      # else
+      #   :buy_apple
+      # end
+  # turns into: 
+      # apple_stock > 1 ? :eat_apple : :buy_apple
+      # condition ? true : false
