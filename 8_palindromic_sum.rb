@@ -57,4 +57,31 @@ end
 
 p find_25_palind_nums
 
-################ Alternative Solutions ################ 
+################ Part of BONUS CHALLENGE ################ 
+# Find a solution to reverse a large number WITHOUT using .to_s/.reverse
+
+def reverse_number(num)
+  reversed_num = 0
+
+  # this will loop until the num becomes 0
+  while num > 0
+
+    # % is called the "modulus operator"
+    # num % 10 => takes the last digit of the num => 6
+    reversed_num = reversed_num * 10 + num % 10
+    # first time: (0*6 = 0) + (246%10 = 6) = 6
+    # second time: (6*10 = 60) + (24%10 = 4) = 64
+    # third time: (64*10 = 640) + (2%10 = 2) = 642
+
+    # by dividing the num by 10 is moves the decimal place up one...
+    # but since we're working in integers this looks like it removes the last number: 
+    num /= 10
+    # first time: 246/10 = 24.6 -> num = 24
+    # second time: 24/10 = 2.4 -> num = 2
+    # third time: 2/10 = 0.2 -> num = 0
+  end
+
+  reversed_num
+end
+
+p reverse_number(246)
