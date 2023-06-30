@@ -60,9 +60,6 @@ def pascals_array(row_number)
     # .collect = looks at each inner row and adds the two elements, then merges them all together: 
     #returns => [1, 2, 1]
 
-    # can be refactored to: 
-    # row = ([0] + row).zip(row + [0]).collect { |a, b| a + b }
-
     pascal.push(row)
   end
 
@@ -75,12 +72,49 @@ p pascals_array(5)
 
 
 ################ Alternative Solutions ################ 
+def pascals_triangle(n)
+  triangle = []
 
+  (0...n).each do |row|
+    # this makes a new, empty, inner array element
+    triangle[row] = []
+    # this sets the first element in the inner array to 1
+    triangle[row][0] = 1
+    # this sets the last element in the inner array to 1
+    triangle[row][row] = 1
 
+    # This is is looking at the row before it: [row - 1] 
+    # and adding the previous element to the current element: [col - 1] + [col]
+    (1...row).each do |col|
+      triangle[row][col] = triangle[row - 1][col - 1] + triangle[row - 1][col]
+    end
+  end
 
-#extra: 
-################ Additional Resources ################ 
+  triangle
+end
 
-############## Sad Path Brainstorming ##############
+p pascals_triangle(4)
 
-############## Final Questions ##############
+################
+
+# Here is an example that I glance at the build my first attempt
+# it does NOT hard code the first two row, but uses an if statement: 
+
+def pascal n
+  pascal = []
+  row = [1]
+
+  (0...n).each do |i|
+    # only for the first iteration sets pascal equal to [[1]] and row to [1,1]
+    if i.zero?
+      pascal << row
+    else
+      row = ([0] + row).zip(row + [0]).collect { |a, b| a + b }
+      pascal << row
+    end
+  end
+
+  pascal
+end 
+
+p pascal(5)
