@@ -1,0 +1,55 @@
+################ Instructions ################ 
+# What's Pascal's triangle? https://en.wikipedia.org/wiki/Pascal's_triangle
+# (add the two numbers to the top R and L of a space to provide it's value)
+# Example: 
+
+#        1
+#       1 1
+#      1 2 1
+#    1  3 3  1
+#  1  4  6  4  1
+
+# Your goal is to write a method/function that, given a depth (n),
+# returns an array representing Pascal’s Triangle to the n-th level.
+
+
+################ Clarification Questions ################ 
+#1. How many "rows" of the triangle do we want returned? Should that be sent as an argument? 
+#2. In what order is the returned array, each row from L to R, top to bottom from L to R, an array of arrays?
+#3. Do we want only the final line to be returned or all of the elements?
+#4. May I do some research online to help build out this method? 
+
+################ Match ################ 
+# I've not done anything like this before - very exciting!
+# I know binary trees are in the shape of a triangle, so I'm wondering if these are related?
+# I suppose this could also be seen like a palindrome since the two ends of the array will be reversed of each other?
+#  -> and for odd lengths there would just be a unique number in the middle 
+
+
+################ Pseudocode ################ 
+# Ok, first I'd say let's accept an argument of the row number that tells the code how many lines to calculate
+# this will also give us the length of the array (and if it'll be odd or even number of elements)
+
+# We need to decide how the array elements are structured:
+# let's say they will be returned as an array of arrays
+# So it'll look something like this: [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]] ...and so on
+
+# Now, let's notice: 
+# each inner array begings and ends with 1
+# if nil we'll need to make that equal 0 ?? so each array begins with 1??
+# then we add each element next to the other and put between the 1's that are in each inner array? if so, then we really start at array 2
+
+################ First Attempt ################ 
+
+
+
+################ Alternative Solutions ################ 
+
+
+
+#extra: 
+################ Additional Resources ################ 
+
+############## Sad Path Brainstorming ##############
+
+############## Final Questions ##############
