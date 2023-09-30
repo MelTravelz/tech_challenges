@@ -98,3 +98,47 @@ to_roman(8.2)
 
 ############## Final Questions ##############
 # Is there a way to solve this without the "accumulator"? Probably a better enumerable than .each could be found!
+
+
+
+################ Alternative Solutions ################
+
+# ChatGPT refactored:
+
+###### changed order of dictionary:
+# ROMANS = {
+#   1000 => "M",
+#   900 => "CM",
+#   500 => "D",
+#   400 => "CD",
+#   100 => "C",
+#   90 => "XC",
+#   50 => "L",
+#   40 => "XL",
+#   10 => "X",
+#   9 => "IX",
+#   5 => "V",
+#   4 => "IV",
+#   1 => "I"
+# }
+
+# def to_roman(num)
+#   num = num.round
+
+####### if conditional uses || instead of &&
+#   if num < 1 || num > 4000
+#     return "Please enter a number between 1 and 4,000"
+#   end
+
+####### the rest is the same:
+#   roman_numeral = ""
+
+#   ROMANS.each do |value, numeral|
+#     while num >= value
+#       roman_numeral += numeral
+#       num -= value
+#     end
+#   end
+
+#   roman_numeral
+# end
