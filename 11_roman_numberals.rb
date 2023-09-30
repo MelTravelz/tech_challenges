@@ -64,7 +64,7 @@ def to_roman(num)
 
   if num > 0 && num <= 4000
     roman_numeral = ""
-    
+
     ROMANS.each do |roman, value|
       while num >= value
         roman_numeral += roman
@@ -76,8 +76,6 @@ def to_roman(num)
     p "Please enter a number between 1 and 4,000"
   end
 end
-
-
 
 
 to_roman(55)
@@ -99,11 +97,5 @@ to_roman(2.5)
 to_roman(8.2)
 #=> expecting "VIII"
 
-################ Alternative Solutions ################ 
-
-#extra: 
-################ Additional Resources ################ 
-
-############## Sad Path Brainstorming ##############
-
 ############## Final Questions ##############
+# Is there a way to solve this without the "accumulator"? Probably a better enumerable than .each could be found!
