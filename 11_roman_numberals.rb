@@ -60,16 +60,21 @@ ROMANS = {
 }
 
 def to_roman(num)
-  roman_numeral = ""
+  num = num.round
 
-  ROMANS.each do |roman, value|
-    while num >= value
-      roman_numeral += roman
-      num -= value
+  if num > 0 && num <= 4000
+    roman_numeral = ""
+    
+    ROMANS.each do |roman, value|
+      while num >= value
+        roman_numeral += roman
+        num -= value
+      end
     end
+    p roman_numeral
+  else
+    p "Please enter a number between 1 and 4,000"
   end
-
-  p roman_numeral
 end
 
 
@@ -80,6 +85,19 @@ to_roman(55)
 
 to_roman(54)
 #=> expecting "LIV"
+
+to_roman(0)
+#=> expecting "Please enter a number between 1 and 4,000"
+
+to_roman(7000)
+#=> expecting "Please enter a number between 1 and 4,000"
+
+# what if I put in a float? -> should round up/down
+to_roman(2.5)
+#=> expecting "III"
+
+to_roman(8.2)
+#=> expecting "VIII"
 
 ################ Alternative Solutions ################ 
 
