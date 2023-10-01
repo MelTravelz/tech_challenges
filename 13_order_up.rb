@@ -38,6 +38,11 @@
 #I'm done something similar but it was only compairing pairs and could not include it's own number... this will be new!
 
 ################ Pseudocode ################ 
+# Ok, send all receipts and as an argument to the method
+# Since we've got two sets, I'm thinking something like .reduce might work? (I'll need to do a bit of research)
+# essentially, we need to iterate through each receipt... while in there, we need to find any combination of menu items that equal that total
+# so since menu is a hash, we could try subtracting and searching OR adding and comparing (I'm not sure, well see what we can figure out when we get here)
+# once we find our combination we can put those keys into an array, .size to get the key and make that the value-hash for our receipt key
 
 ################ First Attempt ################ 
 
@@ -52,8 +57,15 @@ MENU = {
   'soda' => 2.05,
 }
 
-receipts = [4.85, 11.05, 13.75, 17.75, 18.25, 19.40, 28.25, 40.30, 75.00]
+def find_menu_items(receipts)
 
+end
+
+
+receipts = [4.85, 11.05, 13.75, 17.75, 18.25, 19.40, 28.25, 40.30, 75.00]
+solution = find_menu_items(receipts)
+
+p solution
 
 ################ Alternative Solutions ################ 
 
