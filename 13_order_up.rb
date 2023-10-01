@@ -60,26 +60,18 @@ MENU = {
 }
 
 def find_menu_items(receipts)
-  receipt.map do |receipt_total| #final return in an array so we'll use .map here
+  receipts.map do |receipt_total| #final return in an array so we'll use .map here
+    item_names = []
+    current_total = 0
     
     MENU.each do |item_name, item_price|
-      item_names = []
-      current_total = 0
-
-      until current_total == receipt_total
-        
-        if current_total + item_price > receipt_total
-          new_total = current_total + item_price
-          item_names.push(item_name)
-        end
-
-        new_total = current_total
+      while current_total + item_price <= receipt_total #changed loop from until to while, this will also allow for it to continue to find multiple of the same item if necessary
+        current_total += item_price
+        item_names.push(item_name)
       end
-
-      item_count = item_names.size
-      { receipt_total: item_count: item_names } 
     end
 
+      { receipt_total => { item_names.size => item_names } } 
   end
 end
 
@@ -88,12 +80,15 @@ receipts = [4.85, 11.05, 13.75, 17.75, 18.25, 19.40, 28.25, 40.30, 75.00]
 solution = find_menu_items(receipts)
 
 p solution
+#=> expected solution = [{4.85=>{3=>["cheese", "chips", extra veggies"]}}...
+#because  1.25 + 1.4 + 2.20 = 4.85
 
-################ Alternative Solutions ################ 
+# This code is NOT correct:
+#=> [{4.85=>{2=>["extra veggies", "extra veggies"]}}...
+# this is incorrect: extra veggies = 2.40 x 2 = 4.40 but the receipt should be 4.86
 
 
-#extra: 
-################ Additional Resources ################ 
+################ Solution ################ 
 
 ############## Sad Path Brainstorming ##############
 
