@@ -27,7 +27,7 @@
 # The two arguments are 1)payload = an array of unique integers & 2)target = an integer
 # And the retun will be the FIRST two numbers who's sum equals the target, if none is found return an empty array
 
-# 1. So we assuming the payload array will ALWAYS have unique integers inside? (could add .uniq to ensure this in sad/edge case testing)
+# 1. So we are assuming the payload array will ALWAYS have unique integers inside? (could add .uniq to ensure this in sad/edge case testing)
 # 2. Will the payload array be sorted asc/desc order and is their order important? (if not, I can use .sort if necessary)
 
 ################ Match ################ 
@@ -45,7 +45,7 @@
 ################ First Attempt ################ 
 
 def find_target(payload, target)
-  target_match = payload.sort.combination(2).to_a.find do |payload_pair|
+  target_match = payload.sort.uniq.combination(2).to_a.find do |payload_pair|
    payload_pair.sum == target
   end
   p target_match || []
@@ -56,9 +56,22 @@ end
 find_target([1, 3, 4, 5, 10], 15)
 #=> expecting [5, 10]
 
+find_target([-1, -3, 4, 7, -5, 18, 10, -23, 5], 15)
+# => [-3, 18]
+
 # now, what if there is no match! => it returns nil, but we want an empty array
 find_target([-3, -34, 2, 6, 40, -4], 1)
 # => []
+
+# what if there is a duplicate integer in the payload array? => added .uniq just in case!
+find_target([5, 1, 3, 4, 5, 8], 10)
+#=> expecting []
+
+# edge case, what if invalid element is passed into payload?
+# for this we'd need to possibly add another iteration of the payload_pair and convert all elements .to_i
+# => for the scope of this tech challenge I don't think it's necessary
+# find_target([1, 3, "4", 5, 10], 15)
+#=> expecting [5, 10]
 
 ################ Alternative Solutions ################ 
 
