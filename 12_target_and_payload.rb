@@ -35,12 +35,26 @@
 # I also seem to remember .combination will compare each uniqe number in a set... possibly use this? 
 
 ################ Pseudocode ################ 
+# first, we'll sort the payload
+# then I want to try .combination(2) and see if this works if not, then we'll double iterate
+  # ok it looks like .combination worked by creating unique pairs of all the numbers in the original array!
+# then we sum each of those inner arrays and if == target we'll return that array
+  # changed .each to .find since that enumerable returns the block variable
+
 
 ################ First Attempt ################ 
 
+def find_target(payload, target)
+  target_match = payload.sort.combination(2).to_a.find do |payload_pair|
+   payload_pair.sum == target
+  end
+  p target_match
+end
 
 
 
+find_target([1, 3, 4, 5, 10], 15)
+#=> expecting [5, 10]
 
 
 ################ Alternative Solutions ################ 
