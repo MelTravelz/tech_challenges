@@ -43,7 +43,7 @@
 
 
 ################ First Attempt ################ 
-    start_time = Time.now
+    # start_time = Time.now
 
 def find_target(payload, target)
   target_match = payload.sort.uniq.combination(2).to_a.find do |payload_pair|
@@ -52,12 +52,12 @@ def find_target(payload, target)
   p target_match || []
 end
 
-    end_time = Time.now
-    p end_time - start_time
+    # end_time = Time.now
+    # p end_time - start_time
     #=> 1.0e-06, 2.0e-06, 2.0e-06, 2.0e-06  (This one appears to be slower most of the time)
 
 find_target([1, 3, 4, 5, 10], 15)
-#=> expecting [5, 10]
+#=> [5, 10]
 
 find_target([-1, -3, 4, 7, -5, 18, 10, -23, 5], 15)
 # => [-3, 18]
@@ -77,35 +77,64 @@ find_target([5, 1, 3, 4, 5, 8], 10)
 #=> expecting [5, 10]
 
 ################ Refactored Code ################ 
-    start_time = Time.now
+    # start_time = Time.now
 
-def find_target(payload, target)
+def find_target_refactored(payload, target)
   target_match = payload.combination(2).to_a.find do |payload_pair|
    payload_pair.sum == target
   end
   p target_match || []
 end
 
-    end_time = Time.now
-    p end_time - start_time
+    # end_time = Time.now
+    # p end_time - start_time
     #=> 2.0e-06, 1.0e-06, 1.0e-06, 1.0e-06 (this one seems to occationally be faster most of the time)
 
 # using only the three example returns, let's see if we can make this code more efficient
 # 1st, we don't actually need .sort or .uniq
 
-find_target([1, 3, 4, 5, 10], 15)
-#=> expecting [5, 10]
+find_target_refactored([1, 3, 4, 5, 10], 15)
+#=> [5, 10]
 
-find_target([-1, -3, 4, 7, -5, 18, 10, -23, 5], 15)
+find_target_refactored([-1, -3, 4, 7, -5, 18, 10, -23, 5], 15)
 # => [-3, 18]
 
-# now, what if there is no match! => it returns nil, but we want an empty array
-find_target([-3, -34, 2, 6, 40, -4], 1)
+find_target_refactored([-3, -34, 2, 6, 40, -4], 1)
 # => []
+ 
+################ Alternative Solution from ChatGPT ################ 
 
-#extra: 
-################ Additional Resources ################ 
+    # start_time = Time.now
 
-############## Sad Path Brainstorming ##############
+def find_target_fast(payload, target)
+  seen_hash = {} #accumulator
+  
+  payload.each do |num|
+    complement = target - num #so instead of making an array of arrays, we subtract the num from the target which is called complement
+    
+    if seen_hash[complement] #if we find the compliment number we are looking for in they keys of our seen_hash, it enters this if conditional
+      p [complement, num] #Then we create the array we want returned
+      return [complement, num]
+    end
 
-############## Final Questions ##############
+    seen_hash[num] = true #this makes each number we iterate through a key in our seen_hash. (If the compliement returns "true" then it passes into the if conditional!! BRILLIANT!!)
+  end
+
+  p [] #if no match is found it'll return an empty array
+end
+
+    # end_time = Time.now
+    # p end_time - start_time
+    #=> 1.0e-06, 1.0e-06, 1.0e-06, 1.0e-06 ( This one is the most consistent & fastest )
+
+find_target_fast([5, 3, 4, 1, 10], 15)
+#=> expecting [5, 10]
+
+find_target_fast([1, 3, 4, 5, 10], 15)
+#=> expecting [5, 10]
+
+find_target_fast([-1, -3, 4, 7, -5, 18, 10, -23, 5], 15)
+# => [-3, 18]
+
+find_target_fast([-3, -34, 2, 6, 40, -4], 1)
+# => []
