@@ -44,6 +44,8 @@
 # so since menu is a hash, we could try subtracting and searching OR adding and comparing (I'm not sure, well see what we can figure out when we get here)
 # once we find our combination we can put those keys into an array, .size to get the key and make that the value-hash for our receipt key
 
+# ohhh now I'm wondering if we need to order the menu items by price, and start by adding the largest item that is within the receipt price.
+# Ok... this also seems ripe for recrusion since I'm looping
 ################ First Attempt ################ 
 
 MENU = {
@@ -58,7 +60,27 @@ MENU = {
 }
 
 def find_menu_items(receipts)
+  receipt.map do |receipt_total| #final return in an array so we'll use .map here
+    
+    MENU.each do |item_name, item_price|
+      item_names = []
+      current_total = 0
 
+      until current_total == receipt_total
+        
+        if current_total + item_price > receipt_total
+          new_total = current_total + item_price
+          item_names.push(item_name)
+        end
+
+        new_total = current_total
+      end
+
+      item_count = item_names.size
+      { receipt_total: item_count: item_names } 
+    end
+
+  end
 end
 
 
