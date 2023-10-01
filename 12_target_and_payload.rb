@@ -48,7 +48,7 @@ def find_target(payload, target)
   target_match = payload.sort.combination(2).to_a.find do |payload_pair|
    payload_pair.sum == target
   end
-  p target_match
+  p target_match || []
 end
 
 
@@ -56,6 +56,9 @@ end
 find_target([1, 3, 4, 5, 10], 15)
 #=> expecting [5, 10]
 
+# now, what if there is no match! => it returns nil, but we want an empty array
+find_target([-3, -34, 2, 6, 40, -4], 1)
+# => []
 
 ################ Alternative Solutions ################ 
 
