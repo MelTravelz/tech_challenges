@@ -1,3 +1,5 @@
+################ CURRENTLY NO WORKING SOLUTION FOUND!!! ################ 
+
 ################ Instructions ################ 
 # In this challenge you are given a menu and a list of receipt values. 
 # Write a method/function to find the FIRST combination of food that adds up to the receipt total. 
@@ -80,16 +82,15 @@ receipts = [4.85, 11.05, 13.75, 17.75, 18.25, 19.40, 28.25, 40.30, 75.00]
 solution = find_menu_items(receipts)
 
 p solution
-#=> expected solution = [{4.85=>{3=>["cheese", "chips", extra veggies"]}}...
+#=>expected solution: [{4.85=>{3=>["cheese", "chips", extra veggies"]}}...
 #because  1.25 + 1.4 + 2.20 = 4.85
 
-# This code is NOT correct:
-#=> [{4.85=>{2=>["extra veggies", "extra veggies"]}}...
+#### This code is NOT correct:
+#=>actual return: [{4.85=>{2=>["extra veggies", "extra veggies"]}}...
 # this is incorrect: extra veggies = 2.40 x 2 = 4.40 but the receipt should be 4.86
 
 
-################ Solution ################ 
+## Will need to come back to this one and think further on it
+################ CURRENTLY NO WORKING SOLUTION FOUND!!! ################ 
 
-############## Sad Path Brainstorming ##############
-
-############## Final Questions ##############
+# Ideas: I'm wondering if I need to use a binary tree or linked lists...two thinks I'm unfamiliar with as of now.
