@@ -43,6 +43,7 @@
 
 
 ################ First Attempt ################ 
+    start_time = Time.now
 
 def find_target(payload, target)
   target_match = payload.sort.uniq.combination(2).to_a.find do |payload_pair|
@@ -51,7 +52,9 @@ def find_target(payload, target)
   p target_match || []
 end
 
-
+    end_time = Time.now
+    p end_time - start_time
+    #=> 1.0e-06, 2.0e-06, 2.0e-06, 2.0e-06  (This one appears to be slower most of the time)
 
 find_target([1, 3, 4, 5, 10], 15)
 #=> expecting [5, 10]
@@ -73,8 +76,32 @@ find_target([5, 1, 3, 4, 5, 8], 10)
 # find_target([1, 3, "4", 5, 10], 15)
 #=> expecting [5, 10]
 
-################ Alternative Solutions ################ 
+################ Refactored Code ################ 
+    start_time = Time.now
 
+def find_target(payload, target)
+  target_match = payload.combination(2).to_a.find do |payload_pair|
+   payload_pair.sum == target
+  end
+  p target_match || []
+end
+
+    end_time = Time.now
+    p end_time - start_time
+    #=> 2.0e-06, 1.0e-06, 1.0e-06, 1.0e-06 (this one seems to occationally be faster most of the time)
+
+# using only the three example returns, let's see if we can make this code more efficient
+# 1st, we don't actually need .sort or .uniq
+
+find_target([1, 3, 4, 5, 10], 15)
+#=> expecting [5, 10]
+
+find_target([-1, -3, 4, 7, -5, 18, 10, -23, 5], 15)
+# => [-3, 18]
+
+# now, what if there is no match! => it returns nil, but we want an empty array
+find_target([-3, -34, 2, 6, 40, -4], 1)
+# => []
 
 #extra: 
 ################ Additional Resources ################ 
